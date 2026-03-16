@@ -1,50 +1,36 @@
-# React Template（⚡️）
+# CMG Pre-Interview Assessment
 
-⚡️ A minimal React Vite starter template.
+Small React + Vite app for the CMG pre-interview assessment.
 
-## Feature
+### How to run the app
 
-- ⚡️ Fast - Build tools based on vite.
-- 👻 Small - Based on the smallest runnable build.
-- 💄 Prettier - Integrated Prettier to help you format the code.
-- ✅ Safety - Https is enabled by default.
-- 😎 Reliable - Integrated eslint and commitlint.
-- 🤖 Intelligent - Integrated renovate to help you maintain the dependent version.
-
-## Preview
-
-[![qekup8.png](https://s1.ax1x.com/2022/03/20/qekup8.png)](https://imgtu.com/i/qekup8)
-
-## Getting Started
+Using `pnpm`:
 
 ```bash
-npx degit lzm0x219/template-vite-react myapp
-
-cd myapp
-
-git init
+pnpm install
+pnpm dev
 ```
 
-### Prerequisites
+Using `npm`:
 
-- `npm` and `pnpm` should be installed.
-- `git` should be installed (recommended v2.4.11 or higher)
+```bash
+npm install
+npm run dev
+```
 
-### Available scripts
+Visit `https://localhost:5173` in your browser.
 
-#### `pnpm dev`
+### How to run tests
 
-Runs the app in development mode.
-Open https://localhost:5173 to view it in the browser.
+Using `pnpm`:
 
-The page will automatically reload if you make changes to the code.
-You will see the build errors and lint warnings in the console.
+```bash
+pnpm test
+```
 
-#### `pnpm build`
+Using `npm`:
 
-Builds the app for production to the `dist` folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm run test
+```
 
-The build is minified and the filenames include the hashes.
-
-Your app is ready to be deployed.
