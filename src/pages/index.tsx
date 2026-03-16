@@ -23,15 +23,42 @@ export default function Index() {
   const [bots, setBots] = useState<Bot[]>([{ id: 1 }]);
 
   const addNewOrder = (customerType: CustomerType) => {
-    setOrders([
-      ...orders,
-      {
-        id: orders.length + 1,
-        customerType: customerType,
-        status: OrderStatus.Pending,
-        assignedBotId: null,
-      },
-    ]);
+    const nextId =
+      orders.length === 0 ? 1 : Math.max(...orders.map((o) => o.id)) + 1;
+    const newOrder: Order = {
+      id: nextId,
+      customerType,
+      status: OrderStatus.Pending,
+      assignedBotId: null,
+    };
+
+    if (customerType === CustomerType.Normal) {
+      // Append after the last pending order (Normal goes to back of queue)
+      const lastPendingIndex = orders.findLastIndex(
+        (o) => o.status === OrderStatus.Pending
+      );
+      const insertAt =
+        lastPendingIndex === -1 ? orders.length : lastPendingIndex + 1;
+      setOrders([
+        ...orders.slice(0, insertAt),
+        newOrder,
+        ...orders.slice(insertAt),
+      ]);
+    } else {
+      // VIP: insert before the first pending Normal (in front of normals, behind existing VIPs)
+      const firstPendingNormalIndex = orders.findIndex(
+        (o) =>
+          o.status === OrderStatus.Pending &&
+          o.customerType === CustomerType.Normal
+      );
+      const insertAt =
+        firstPendingNormalIndex === -1 ? orders.length : firstPendingNormalIndex;
+      setOrders([
+        ...orders.slice(0, insertAt),
+        newOrder,
+        ...orders.slice(insertAt),
+      ]);
+    }
   };
   const addNewBot = () => {
     setBots([...bots, { id: bots.length + 1 }]);
