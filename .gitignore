@@ -133,3 +133,4 @@ dist
 .wireit
 
 .turbo
+.pnpm-store/
