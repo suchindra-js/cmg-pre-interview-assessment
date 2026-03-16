@@ -2,6 +2,12 @@ export enum CustomerType {
   Normal = "Normal",
   VIP = "VIP ",
 }
+
+export enum OrderStatus {
+  Pending = "Pending",
+  Processing = "Processing",
+  Completed = "Completed",
+}
 export interface OrderProps {
   id: number;
   customerType: CustomerType;
